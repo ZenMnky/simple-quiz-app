@@ -244,10 +244,13 @@ const viewQuestionCorrect = () => {
  */
 const viewQuestionWrong = () => {
   const wrongAnswerHTML = `
-  <article class="correctAnswer">
+  <article class="wrongAnswer">
     <h1>Nope!</h1>
     <h2>Mark this down as a learning opportunity</h2>
     <img src="${incorrectImg}" alt="faceplant image">
+    <div id="reveal-correct">
+      <h3>The correct answer is ${currentCorrectAnswer}</h3>
+    </div>
     <div class="scoreContainer">
       <h2>Score: ${questionDB.score}</h2>
       <h3>Correct: ${questionDB.score}</h3>
