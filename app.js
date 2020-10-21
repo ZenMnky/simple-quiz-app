@@ -24,7 +24,7 @@ const store = {
           'From Monday to Friday 8AM-5PM EST',
           '365 days a year'
         ],
-        correctAnswer: '24/6'
+        correctAnswer: '24/6 from Sunday 5PM-Friday 5PM'
       },
       {
         question: 'The assets traded on the Foreign Exchange Market are:',
