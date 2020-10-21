@@ -41,7 +41,7 @@ const questionDB = {
         'From Monday to Friday 8AM-5PM EST',
         '365 days a year'
       ],
-      correctAnswer: '24/6'
+      correctAnswer: '24/6 from Sunday 5PM-Friday 5PM'
     },
     {
       question: 'The assets traded on the Foreign Exchange Market are:',
@@ -137,7 +137,7 @@ const generateStartPageTemplate = (dataSet) => {
     <article id="startPage">
       <h1>Basic Foreign Exchange Market Quiz</h1>
       <div class="quizDescription">
-        <p>This is a basic foreign exchang market quiz</p>
+        <p>This is a basic foreign exchange market quiz</p>
         <p>There will be ${dataSet.questions.length} questions</p>
         <p>Click the button below to begin!</p>
       </div>
