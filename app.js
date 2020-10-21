@@ -137,7 +137,7 @@ const generateStartPageTemplate = (dataSet) => {
     <article id="startPage">
       <h1>Basic Foreign Exchange Market Quiz</h1>
       <div class="quizDescription">
-        <p>This is a basic foreign exchang market quiz</p>
+        <p>This is a basic foreign exchange market quiz</p>
         <p>There will be ${dataSet.questions.length} questions</p>
         <p>Click the button below to begin!</p>
       </div>
