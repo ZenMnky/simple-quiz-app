@@ -112,9 +112,7 @@ render = () => {
       } else {
         //render end quiz page
         mainContainer.html(viewEndGame());
-
       }
-    
   }
 };
 
@@ -313,18 +311,20 @@ const viewEndGame = () => {
 /*=============================================
 =            Event Handlers            =
 =============================================*/
-
-/**
+  /**
  * Handle Start Quiz button
  */
-mainContainer.on('click', 'button#start', (event) => {
-  //prevent from from submitting
-  event.preventDefault();
-  //update quiz-started state
-  questionDB.quizStarted = true;
-  //Generate question-view
-  mainContainer.html(generateQuestionTemplate(questionDB));
-});
+const handleStartQuizButton = () => {
+  mainContainer.on('click', 'button#start', (event) => {
+    //prevent from from submitting
+    event.preventDefault();
+    //update quiz-started state
+    questionDB.quizStarted = true;
+    //Generate question-view
+    mainContainer.html(generateQuestionTemplate(questionDB));
+  });
+}
+
 
 /**
  * handles the question submit button
@@ -332,43 +332,62 @@ mainContainer.on('click', 'button#start', (event) => {
  *   updates tracking info: player score, right answers, 
  *   wrong answers, question number
  */
-mainContainer.on('click', 'button#submitAnswerBtn', (event) => {
-  //prevents default form submission
-  event.preventDefault();
-
-  //check answer
-  checkAnswer();
-});
+const handleQuestionSubmitButton = () => {
+  mainContainer.on('click', 'button#submitAnswerBtn', (event) => {
+    //prevents default form submission
+    event.preventDefault();
+  
+    //check answer
+    checkAnswer();
+  });
+  
+}
 
 
 /**
  *handles next question button 
  */
-mainContainer.on('click', 'button#nextQuestionBtn', (event) => {
-  //prevent form submission
-  event.preventDefault();
-
-  //load next question
-  render();
-});
+const handleNextQuestionButton = () => {
+  mainContainer.on('click', 'button#nextQuestionBtn', (event) => {
+    //prevent form submission
+    event.preventDefault();
+  
+    //load next question
+    render();
+  });
+}
 
 /**
  * Handles New-Quiz / Reset Button
  */
-mainContainer.on('click', 'button#resetBtn', (event) => {
-  console.log('new quiz button fired')
-  //prevent form submission
-  event.preventDefault();
+const handleNewQuizButton = () => {
+  mainContainer.on('click', 'button#resetBtn', (event) => {
+  
+    //prevent form submission
+    event.preventDefault();
+  
+    //reset game data
+    questionDB.quizStarted = false;
+    questionDB.questionNumber = 0;
+    questionDB.score = 0;
+    questionDB.incorrectAnswers = 0;
+  
+    //load start page
+    render();
+  });
+}
 
-  //reset game data
-  questionDB.quizStarted = false;
-  questionDB.questionNumber = 0;
-  questionDB.score = 0;
-  questionDB.incorrectAnswers = 0;
 
-  //load start page
-  render();
-});
+
+/**
+ * Bind Event Handlers into one function
+ */
+const bindEventHandlers = () => {
+  handleStartQuizButton();
+  handleQuestionSubmitButton();
+  handleNextQuestionButton();
+  handleNewQuizButton();
+}
 
 /*=============================================
 =            Helper Functions            =
@@ -421,11 +440,16 @@ const didPlayerPass = () => {
 
 
 /*=============================================
-=            Load Main Container-App            =
+=            Main Container & Call to Load            =
 =============================================*/
 
-//Primary function container that runs when DOM loads
-$(render);
+const app = () => {
+  bindEventHandlers();
+  render();
+}
+
+//runs when DOM loads
+$(app);
 
 
 // 🥳🥳🥳🥳🥳
