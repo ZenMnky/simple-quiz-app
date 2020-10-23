@@ -402,23 +402,29 @@ const bindEventHandlers = () => {
  */
 const checkAnswer = () => {
   let selectedAnswer = $('[type=radio]:checked').val();
+  
+  //check if an answer is selected
+  if (selectedAnswer){
+    //increment question number
+    questionDB.questionNumber += 1;
 
-  //increment question number
-  questionDB.questionNumber += 1;
-
-  if (selectedAnswer === currentCorrectAnswer){
-    //increment player score
-    questionDB.score += 1;
-    
-    //call correct answer page
-    viewQuestionCorrect()
+    if (selectedAnswer === currentCorrectAnswer){
+      //increment player score
+      questionDB.score += 1;
+      
+      //call correct answer page
+      viewQuestionCorrect()
+    } else {
+      //increment incorect answer count
+      questionDB.incorrectAnswers += 1;
+      
+      //call wrong answer page
+      viewQuestionWrong()
+    }
   } else {
-    //increment incorect answer count
-    questionDB.incorrectAnswers += 1;
-    
-    //call wrong answer page
-    viewQuestionWrong()
+    alert('An answer must be selected to continue')
   }
+
 }
 
 /**
